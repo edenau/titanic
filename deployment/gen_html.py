@@ -1,9 +1,9 @@
 from pre_processing import pre_processing
 
-def fit_model(title, sex, age, Pclass, cabin, SibSp, ParCh, fare, embarked, model, scaler):
+def fit_model(sex, title, age, Pclass, cabin, SibSp, ParCh, fare, embarked, model, scaler):
     """Generate `new_words` words of output from a trained model and format into HTML."""
 
-    processed_x = pre_processing(title, sex, age, Pclass, cabin, SibSp, ParCh, fare, embarked, scaler)
+    processed_x = pre_processing(sex, title, age, Pclass, cabin, SibSp, ParCh, fare, embarked, scaler)
     pred = model.predict(processed_x)
 
     # HTML formatting

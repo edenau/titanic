@@ -18,11 +18,11 @@
     </h3>
 
     {% block content %}
-    {% for message in form.title.errors %}
+    {% for message in form.sex.errors %}
     <div class="flash">{{ message }}</div>
     {% endfor %}
 
-    {% for message in form.sex.errors %}
+    {% for message in form.title.errors %}
     <div class="flash">{{ message }}</div>
     {% endfor %}
 
@@ -56,11 +56,11 @@
 
     <form method=post>
 
-      {{ form.title.label }}
-      {{ form.title }}
-
       {{ form.sex.label }}
       {{ form.sex }}
+
+      {{ form.title.label }}
+      {{ form.title }}
 
       {{ form.age.label }}
       {{ form.age }}
@@ -86,6 +86,10 @@
       <p></p>
 
       {{ form.submit }}
+
+      <p></p>
+
+      <p><img src="fare_kde.png" alt="Fare Distribution"/></p>
     </form>
     {% endblock %}
 

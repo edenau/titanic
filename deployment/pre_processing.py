@@ -1,4 +1,4 @@
-def pre_processing(title, sex, age, Pclass, cabin, SibSp, ParCh, fare, embarked, scaler):
+def pre_processing(sex, title, age, Pclass, cabin, SibSp, ParCh, fare, embarked, scaler):
 
     x = [sex, age, SibSp, ParCh, fare, cabin]
 

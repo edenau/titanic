@@ -10,13 +10,13 @@ app = Flask(__name__)
 # Define a form
 class ReusableForm(Form):
 
-    title = SelectField('Title:',
-                  choices=[('Mr', 'Mr'), ('Miss', 'Miss'), ('Mrs', 'Mrs'), ('Master', 'Master'), ('Rare', 'Rare') ],
-                  validators=[validators.InputRequired()])
-
     sex = SelectField('Sex:',
                       choices=[('1', 'Male'), ('0', 'Female') ],
                       validators=[validators.InputRequired()])
+
+    title = SelectField('Title:',
+                  choices=[('Mr', 'Mr'), ('Miss', 'Miss'), ('Mrs', 'Mrs'), ('Master', 'Master'), ('Rare', 'Rare') ],
+                  validators=[validators.InputRequired()])
 
     age = DecimalField('Age:',
                        default=30,
@@ -77,8 +77,8 @@ def home():
     # On form entry and all entries validated
     if request.method == 'POST' and form.validate():
         # Extract information
-        title = request.form['title']
         sex = int(request.form['sex'])
+        title = request.form['title']
         age = float(request.form['age'])
         Pclass = int(request.form['Pclass'])
         cabin = int(request.form['Pclass'])
@@ -88,8 +88,8 @@ def home():
         embarked = request.form['embarked']
         # Send information to template
         return render_template('predict.html',
-                               input=fit_model(title=title,
-                                               sex=sex,
+                               input=fit_model(sex=sex,
+                                               title=title,
                                                age=age,
                                                Pclass=Pclass,
                                                cabin=cabin,
