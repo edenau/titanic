@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Would You Survive the Titanic?</title>
+  <link rel="stylesheet" href="/static/css/main.css">
+  <link rel="shortcut icon" href="/static/images/lstm.ico">
+
+</head>
+
+<body>
+  <div class="container">
+    <h2>
+      <center>Would You Survive the Titanic?</center>
+    </h2>
+    <h3>
+      <center>Predicted by machine learning algorithms</center>
+    </h3>
+
+    {% block content %}
+    {% for message in form.title.errors %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in form.sex.errors %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in form.age.errors %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in form.Pclass.errors %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in form.cabin.errors %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in form.SibSp.errors %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in form.ParCh.errors %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in form.fare.errors %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in form.embarked.errors %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+
+    <form method=post>
+
+      {{ form.title.label }}
+      {{ form.title }}
+
+      {{ form.sex.label }}
+      {{ form.sex }}
+
+      {{ form.age.label }}
+      {{ form.age }}
+
+      {{ form.Pclass.label }}
+      {{ form.Pclass }}
+
+      {{ form.cabin.label }}
+      {{ form.cabin }}
+
+      {{ form.SibSp.label }}
+      {{ form.SibSp }}
+
+      {{ form.ParCh.label }}
+      {{ form.ParCh }}
+
+      {{ form.fare.label }}
+      {{ form.fare }}
+
+      {{ form.embarked.label }}
+      {{ form.embarked }}
+
+      <p></p>
+
+      {{ form.submit }}
+    </form>
+    {% endblock %}
+
+  </div>
+</body>
+
+</html>
