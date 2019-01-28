@@ -114,4 +114,4 @@ if __name__ == '__main__':
     print((' * Loading model and Flask starting server...\n * Please wait until server has fully started'))
     load_model()
     # Run app
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=8888)
