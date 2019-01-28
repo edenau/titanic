@@ -33,7 +33,7 @@ def fit_model(sex, title, age, Pclass, cabin, SibSp, ParCh, fare, embarked, mode
 
     html = addContent(html, header('{:.2%}'.format(prob), color=color))
 
-    return f'<div>{html}</div>' #<div>{gen_html}</div><div>{a_html}</div>'
+    return f'<div>{html}</div>'
 
 
 # Create an HTML header
