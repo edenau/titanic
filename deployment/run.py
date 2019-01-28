@@ -1,3 +1,5 @@
+# coding=utf-8
+
 # Import libraries
 from gen_html import fit_model
 from flask import Flask, render_template, request
