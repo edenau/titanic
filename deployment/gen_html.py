@@ -1,19 +1,37 @@
 from pre_processing import pre_processing
 
 def fit_model(sex, title, age, Pclass, cabin, SibSp, ParCh, fare, embarked, model, scaler):
-    """Generate `new_words` words of output from a trained model and format into HTML."""
 
     processed_x = pre_processing(sex, title, age, Pclass, cabin, SibSp, ParCh, fare, embarked, scaler)
-    pred = model.predict(processed_x)
+    #pred_class = model.predict(processed_x)
+    prob = model.predict_proba(processed_x)[0,1]
 
     # HTML formatting
     html = ''
+    # Hard binary classifier
+    '''
     html = addContent(html, header('Oh...', color='darkblue'))
     if pred == 1:
         html = addContent(html, box('You would have survived!'))
     else:
         html = addContent(html, box('You would have died.'))
+    '''
 
+    # Soft binary classifier
+    html = addContent(html, box('Your survival probability would be...'))
+
+    if prob < 0.17:
+        color = '#6D2028'
+    elif prob < 0.34:
+        color = '#FF4C49'
+    elif prob < 0.51:
+        color = '#FF8C42'
+    elif prob < 0.68:
+        color = '#FF9F63'
+    else:
+        color = '#6EA1D1'
+
+    html = addContent(html, header('{:.2%}'.format(prob), color=color))
 
     return f'<div>{html}</div>' #<div>{gen_html}</div><div>{a_html}</div>'
 

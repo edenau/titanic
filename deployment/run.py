@@ -6,6 +6,7 @@ import pickle
 
 # Create app
 app = Flask(__name__)
+model_choice = 'soft'
 
 # Define a form
 class ReusableForm(Form):
@@ -15,7 +16,10 @@ class ReusableForm(Form):
                       validators=[validators.InputRequired()])
 
     title = SelectField('Title:',
-                  choices=[('Mr', 'Mr'), ('Miss', 'Miss'), ('Mrs', 'Mrs'), ('Master', 'Master'), ('Rare', 'Rare') ],
+                  choices=[('Mr', 'Mr'), ('Miss', 'Miss'), ('Mrs', 'Mrs'), ('Master', 'Master'),
+                           ('Rare', 'Sir'), ('Rare', 'Lady'), ('Rare', 'The Reverend'), ('Rare', 'The Countess'),
+                           ('Rare', 'Don'), ('Rare', 'Doña'), ('Rare', 'Dr'),
+                           ('Rare', 'Captain'), ('Rare', 'Colonel'), ('Rare', 'Major')],
                   validators=[validators.InputRequired()])
 
     age = DecimalField('Age:',
@@ -56,20 +60,20 @@ class ReusableForm(Form):
                          validators=[validators.InputRequired()])
 
 
-    submit = SubmitField("Enter")
+    submit = SubmitField('Predict')
 
 
 # load pre-trained models and setups
 def load_model():
     global model
-    with open('model.pkl', 'rb') as f:
+    with open('model_{}.pkl'.format(model_choice), 'rb') as f:
         model = pickle.load(f)
     global scaler
-    with open('scaler.pkl', 'rb') as f:
+    with open('scaler_{}.pkl'.format(model_choice), 'rb') as f:
         scaler = pickle.load(f)
 
 # Home page
-@app.route("/", methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def home():
     # Create form
     form = ReusableForm(request.form)
@@ -104,7 +108,7 @@ def home():
                            form=form)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     print((' * Loading model and Flask starting server...\n * Please wait until server has fully started'))
     load_model()
     # Run app
